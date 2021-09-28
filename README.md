@@ -40,7 +40,7 @@ Cover many core SQL skills and techniques required for data analysis from beginn
 
 ## Completed 8 Week SQL Challenge Case Studies
 
-- [Case Study 1: Danny's Diner]
+- [Case Study Nº1 - Danny's Diner](#case-study-1-dannys-diner)
 
 ***
 
@@ -51,4 +51,4 @@ Danny seriously loves Japanese food so in the beginning of 2021, he decides to e
 
 Danny’s Diner is in need of your assistance to help the restaurant stay afloat - the restaurant has captured some very basic data from their few months of operation but have no idea how to use their data to help them run the business.
 
-View my solution (https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
+View my solution [(https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/germangds/8_Week_SQL_Challenge_Danny_Ma/blob/main/Study%20N%C2%BA1%20-%20Danny's%20Diner.md)

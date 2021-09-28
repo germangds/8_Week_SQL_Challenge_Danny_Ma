@@ -5,11 +5,11 @@
 
 The 8 Week SQL Challenge is brought by the Data With Danny virtual data apprenticeship program to celebrate the launch of the Serious SQL course! Thank you Danny Ma for setting up these case studies!
 
-## What is the 8 Week SQL Challenge?
+## 🖥️ What is the 8 Week SQL Challenge?
 
 The main idea of this chellenge is to create a community which supports all data professionals who are specifically starting on their SQL learning journey.
 
-## What are some of the topics covered in this challenge?
+## 📚 What are some of the topics covered in this challenge?
 
 Cover many core SQL skills and techniques required for data analysis from beginner to advanced levels including:
 
@@ -38,13 +38,13 @@ Cover many core SQL skills and techniques required for data analysis from beginn
 - Loading raw data
 - Table schemas and data types
 
-## Completed 8 Week SQL Challenge Case Studies
+## ✅ Completed 8 Week SQL Challenge Case Studies
 
-- [Case Study Nº1 - Danny's Diner](#case-study-1-dannys-diner)
+- [🍜 Case Study Nº1 - Danny's Diner](#case-study-1-dannys-diner)
 
 ***
 
-## Case Study Nº1 - Danny's Diner
+## 🍜 Case Study Nº1 - Danny's Diner
 <img src="https://user-images.githubusercontent.com/81607668/127727503-9d9e7a25-93cb-4f95-8bd0-20b87cb4b459.png" alt="Image" width="500" height="520">
 
 Danny seriously loves Japanese food so in the beginning of 2021, he decides to embark upon a risky venture and opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen.

@@ -428,7 +428,7 @@ ORDER BY customer_id,order_date
     
 ---
     
-### **Q12 Bonus Question. Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
+### **Q12 Bonus Question. Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.**
 ```sql
 WITH cte AS (
     SELECT 

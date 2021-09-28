@@ -40,7 +40,7 @@ Cover many core SQL skills and techniques required for data analysis from beginn
 
 ## ✅ Completed 8 Week SQL Challenge Case Studies
 
-- [🍜 Case Study Nº1 - Danny's Diner](#case-study-1-dannys-diner)
+- [🍜 Case Study Nº1 - Danny's Diner]
 
 ***
 

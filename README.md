@@ -469,4 +469,8 @@ FROM cte
 | B           | 2021-02-01T00:00:00.000Z | ramen        | 12    | Y      | 3       |
 | C           | 2021-01-01T00:00:00.000Z | ramen        | 12    | N      | null    |
 | C           | 2021-01-01T00:00:00.000Z | ramen        | 12    | N      | null    |
-| C           | 2021-01-07T00:00:00.000Z | ramen        | 12    | N      | null    |   
+| C           | 2021-01-07T00:00:00.000Z | ramen        | 12    | N      | null    |
+    
+---
+    
+<p>&copy; 2021 Germán Germán De Souza</p>

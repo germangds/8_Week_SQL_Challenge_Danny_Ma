@@ -64,22 +64,22 @@ Note that customers can order multiple pizzas in a single order with varying ```
 
 The ```exclusions``` and ```extras``` columns will need to be cleaned up before using them in your queries.
 
-|order_id|customer_id|pizza_id|exclusions|extras|order_time        |
-|--------|-----------|--------|----------|------|------------------|
-|1       |101        |1       |          |      |44197.75349537037 |
-|2       |101        |1       |          |      |44197.79226851852 |
-|3       |102        |1       |          |      |44198.9940162037  |
-|3       |102        |2       |          |*null*|44198.9940162037  |
-|4       |103        |1       |4         |      |44200.558171296296|
-|4       |103        |1       |4         |      |44200.558171296296|
-|4       |103        |2       |4         |      |44200.558171296296|
-|5       |104        |1       |null      |1     |44204.87533564815 |
-|6       |101        |2       |null      |null  |44204.877233796295|
-|7       |105        |2       |null      |1     |44204.88922453704 |
-|8       |102        |1       |null      |null  |44205.99621527778 |
-|9       |103        |1       |4         |1, 5  |44206.47429398148 |
-|10      |104        |1       |null      |null  |44207.77417824074 |
-|10      |104        |1       |2, 6      |1, 4  |44207.77417824074 |
+|order_id|customer_id|pizza_id|exclusions|extras|order_time          |
+|--------|-----------|--------|----------|------|--------------------|
+|1       |101        |1       |          |      |2020-01-01T18:05:02 |
+|2       |101        |1       |          |      |2021-01-01 19:00:52 |
+|3       |102        |1       |          |      |2021-01-02 23:51:23 |
+|3       |102        |2       |          |NaN   |2021-01-02 23:51:23 |
+|4       |103        |1       |4         |      |2021-01-04 13:23:46 |
+|4       |103        |1       |4         |      |2021-01-04 13:23:46 |
+|4       |103        |2       |4         |      |2021-01-04 13:23:46 |
+|5       |104        |1       |null      |1     |2021-01-08 21:00:29 |
+|6       |101        |2       |null      |null  |2021-01-08 21:03:13 |
+|7       |105        |2       |null      |1     |2021-01-08 21:20:29 |
+|8       |102        |1       |null      |null  |2021-01-09 23:54:33 |
+|9       |103        |1       |4         |1, 5  |2021-01-10 11:22:59 |
+|10      |104        |1       |null      |null  |2021-01-11 18:34:49 |
+|10      |104        |1       |2, 6      |1, 4  |2021-01-11 18:34:49 |
 
 ### **```runner_orders```**
     
@@ -223,5 +223,45 @@ If Danny wants to expand his range of pizzas - how would this impact the existin
 ## Solutions
 
 ### A. Pizza Metrics
+
+### **Q1. How many pizzas were ordered?**
+```sql
+SELECT 
+    COUNT(*) AS pizza_counter
+FROM pizza_runner.customer_orders;
+```
+***Output***
+
+|pizza_counter|
+|-------------|
+|14           |
+
+### **Q2. How many unique customer orders were made?**
+```sql
+SELECT 
+    COUNT(DISTINCT pizza_id) AS n_customers_orders
+FROM pizza_runner.customer_orders;
+```
+***Output***
+
+|n_customers_orders|
+|------------------|
+|10                |
+
+### **Q3. How many successful orders were delivered by each runner?**
+```sql
+SELECT 
+    runner_id, 
+    COUNT(DISTINCT order_id) AS succesful_orders
+FROM pizza_runner.runner_orders
+WHERE pickup_time NOT LIKE 'null'
+GROUP BY runner_id;
+```
+***Output***
+
+|n_customers_orders|
+|------------------|
+|10                |
+
 
 

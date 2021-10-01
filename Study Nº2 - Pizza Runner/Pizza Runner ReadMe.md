@@ -255,13 +255,16 @@ SELECT
     COUNT(DISTINCT order_id) AS succesful_orders
 FROM pizza_runner.runner_orders
 WHERE pickup_time NOT LIKE 'null'
-GROUP BY runner_id;
+GROUP BY runner_id
+ORDER BY runner_id;
 ```
 ***Output***
 
-|n_customers_orders|
-|------------------|
-|10                |
+| runner_id | successful_orders |
+|-----------|-------------------|
+| 1         | 4                 |
+| 2         | 3                 |
+| 3         | 1                 |
 
 
 

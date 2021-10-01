@@ -266,5 +266,108 @@ ORDER BY runner_id;
 | 2         | 3                 |
 | 3         | 1                 |
 
+### **Q4. How many successful orders were delivered by each runner?**
+```sql
+WITH cte AS (
+    SELECT 
+        c.order_id,
+        c.pizza_id,
+        r.pickup_time 
+    FROM pizza_runner.customer_orders c LEFT JOIN pizza_runner.runner_orders r 
+        ON c.order_id=r.order_id)
+SELECT 
+    pizza_id,
+    COUNT(*) AS pizza_counter FROM cte
+WHERE pickup_time NOT LIKE 'null'
+GROUP BY pizza_id;
+```
+***Output***
 
+| pizza_name | pizza_counter |
+|------------|---------------|
+| Meatlovers | 9             |
+| Vegetarian | 3             |
+
+### **Q5. How many Vegetarian and Meatlovers were ordered by each customer?**
+```sql
+SELECT 
+  customer_id, 
+  SUM(CASE WHEN pizza_id = 1 THEN 1 ELSE 0 END) AS MeatLovers, 
+  SUM(CASE WHEN pizza_id = 2 THEN 1 ELSE 0 END) AS Vegetarian 
+FROM pizza_runner.customer_orders
+GROUP BY customer_id;
+```
+***Output***
+
+| customer_id | meatlovers | vegetarian |
+|-------------|-------------|------------|
+| 101         | 2           | 1          |
+| 103         | 3           | 1          |
+| 104         | 3           | 0          |
+| 105         | 0           | 1          |
+| 102         | 2           | 1          |
+
+### **Q6. What was the maximum number of pizzas delivered in a single order?**
+```sql
+SELECT 
+    r.order_id, 
+    c.n_pizzas 
+FROM pizza_runner.runner_orders r LEFT JOIN (SELECT order_id, COUNT(*) AS n_pizzas FROM pizza_runner.customer_orders GROUP BY order_id) c 
+    ON r.order_id=c.order_id
+WHERE r.pickup_time NOT LIKE 'null'
+ORDER BY c.n_pizzas DESC
+LIMIT 1;
+```
+***Output***
+
+| order_id  | n_pizzas  |
+|-----------|-----------|
+| 4         | 3         |
+
+### **Q7. For each customer, how many delivered pizzas had at least 1 change and how many had no changes?**
+```sql
+WITH cte AS (
+    SELECT 
+        c.customer_id, 
+        CASE WHEN c.exclusions IN ('','null') THEN 0 ELSE 1 END AS exclusions, 
+        CASE WHEN c.extras IN ('','null') OR c.extras IS NULL THEN 0 ELSE 1 END AS extras 
+FROM pizza_runner.customer_orders c LEFT JOIN pizza_runner.runner_orders r 
+    ON c.order_id=r.order_id WHERE r.pickup_time NOT LIKE 'null')
+SELECT 
+    customer_id, 
+    SUM(CASE WHEN (exclusions=1 OR extras=1) OR (exclusions=1 AND extras=1) THEN 1 ELSE 0 END) AS at_least_one_change, 
+    SUM(CASE WHEN (exclusions=0 AND extras=0) THEN 1 ELSE 0 END) AS no_changes 
+FROM cte
+GROUP BY customer_id
+ORDER BY customer_id;
+```
+***Output***
+
+| customer_id | at_least_one_change | no_changes |
+|-------------|---------------------|------------|
+| 101         | 0                   | 2          |
+| 102         | 0                   | 3          |
+| 103         | 3                   | 3          |
+| 104         | 2                   | 2          |
+| 105         | 1                   | 1          |
+
+### **Q8. How many pizzas were delivered that had both exclusions and extras?**
+```sql
+WITH cte AS (
+    SELECT 
+        c.customer_id, 
+        CASE WHEN c.exclusions IN ('','null') THEN 0 ELSE 1 END AS exclusions, 
+        CASE WHEN c.extras IN ('','null') OR c.extras IS NULL THEN 0 ELSE 1 END AS extras 
+    FROM pizza_runner.customer_orders c LEFT JOIN pizza_runner.runner_orders r 
+        ON c.order_id=r.order_id WHERE r.pickup_time NOT LIKE 'null')
+SELECT 
+    COUNT(*) AS d_pizzas_exclusions_and_extras 
+FROM cte
+WHERE exclusions=1 AND extras=1;
+```
+***Output***
+
+| d_pizzas_exclusions_and_extras |
+|--------------------------------|
+| 1                              |
 
